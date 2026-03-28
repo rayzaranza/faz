@@ -6,8 +6,10 @@ interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
 
 const variants = {
   default: "bg-surface hover:bg-surface-hover active:bg-surface-pressed",
-  accent: "bg-accent hover:bg-accent-hover active:bg-accent-pressed",
-  danger: "bg-danger hover:bg-danger-hover active:bg-danger-pressed",
+  accent:
+    "bg-surface-accent hover:bg-surface-accent-hover active:bg-surface-accent-pressed",
+  danger:
+    "bg-surface-danger hover:bg-surface-danger-hover active:bg-surface-danger-pressed",
 };
 
 export function Button({

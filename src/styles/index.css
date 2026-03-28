@@ -101,13 +101,13 @@
     --color-surface-hover: var(--color-zinc-300);
     --color-surface-pressed: var(--color-zinc-400);
 
-    --color-accent: var(--color-violet-800);
-    --color-accent-hover: var(--color-violet-600);
-    --color-accent-pressed: var(--color-violet-950);
+    --color-surface-accent: var(--color-violet-500);
+    --color-surface-accent-hover: var(--color-violet-600);
+    --color-surface-accent-pressed: var(--color-violet-950);
 
-    --color-danger: var(--color-rose-800);
-    --color-danger-pressed: var(--color-rose-950);
-    --color-danger-hover: var(--color-rose-600);
+    --color-surface-danger: var(--color-rose-800);
+    --color-surface-danger-pressed: var(--color-rose-950);
+    --color-surface-danger-hover: var(--color-rose-600);
 
     --color-content: var(--color-zinc-900);
     --color-content-secondary: var(--color-zinc-600);
