@@ -1,8 +1,9 @@
 import { Button } from "./components/Button";
 import { Icon } from "./components/Icon";
-import { Plus, ArrowLeft, Trash } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Text } from "./components/Text";
 import { Input } from "./components/Input";
+import { Card } from "./components/Card";
 
 export function App() {
   return (
@@ -22,18 +23,6 @@ export function App() {
           <Icon icon={Plus} size="small" />
         </div>
 
-        <div className="flex place-items-center gap-5">
-          <Icon icon={ArrowLeft} size="large" />
-          <Icon icon={ArrowLeft} />
-          <Icon icon={ArrowLeft} size="small" />
-        </div>
-
-        <div className="flex place-items-center gap-5">
-          <Icon icon={Trash} size="large" />
-          <Icon icon={Trash} />
-          <Icon icon={Trash} size="small" />
-        </div>
-
         <Input label="email" />
       </div>
 
@@ -42,6 +31,8 @@ export function App() {
         <Button variant="accent">botão</Button>
         <Button variant="danger">botão</Button>
       </div>
+
+      <Card title="asdadsad" />
     </div>
   );
 }
