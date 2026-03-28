@@ -14,5 +14,7 @@ const sizes = {
 };
 
 export function Icon({ icon: SVG, size = "medium", className }: IconProps) {
-  return <SVG className={cn("text-current", sizes[size], className)} />;
+  return (
+    <SVG className={cn("shrink-0 text-current", sizes[size], className)} />
+  );
 }

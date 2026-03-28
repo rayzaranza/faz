@@ -1,7 +1,10 @@
 import { cn } from "../utils/classNames";
+import { type LucideIcon } from "lucide-react";
+import { Icon } from "./Icon";
 
 interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
   variant?: "default" | "accent" | "danger";
+  icon?: LucideIcon;
 }
 
 const variants = {
@@ -15,21 +18,24 @@ const variants = {
 export function Button({
   children,
   variant = "default",
+  icon,
   ...rest
 }: ButtonProps) {
   return (
     <button
       type="button"
       className={cn(
-        "flex h-10 cursor-pointer place-items-center gap-2 rounded-2xl px-4 text-lg select-none disabled:cursor-not-allowed",
+        "flex h-10 cursor-pointer items-center justify-center gap-2 rounded-2xl px-4 text-lg select-none disabled:cursor-not-allowed",
         "shadow-elevated hover:shadow-elevated-hover active:shadow-inset",
-        "transform-gpu transition hover:-translate-y-px active:translate-y-0.5",
+        "transition hover:-translate-y-px active:translate-y-0.5",
         "squircle",
+        !children && "w-10",
         variants[variant],
       )}
       {...rest}
     >
-      {children}
+      {icon && <Icon size="medium" icon={icon} />}
+      {children && <span className="translate-y-[0.1rem]">{children}</span>}
     </button>
   );
 }
