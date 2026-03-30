@@ -2,9 +2,15 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import svgr from "vite-plugin-svgr";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), svgr()],
+  plugins: [
+    tailwindcss(),
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    react(),
+    svgr(),
+  ],
   test: {
     environment: "jsdom",
     globals: true,
