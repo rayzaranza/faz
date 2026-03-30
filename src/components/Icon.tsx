@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import { Cat, type LucideIcon } from "lucide-react";
 import { cn } from "../utils/classNames";
 
 interface IconProps {
@@ -13,7 +13,11 @@ const sizes = {
   large: "w-10 h-10",
 };
 
-export function Icon({ icon: SVG, size = "medium", className }: IconProps) {
+export function Icon({
+  icon: SVG = Cat,
+  size = "medium",
+  className,
+}: IconProps) {
   return (
     <SVG className={cn("shrink-0 text-current", sizes[size], className)} />
   );
