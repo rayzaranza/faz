@@ -5,17 +5,19 @@ interface InputProps extends ComponentPropsWithRef<"input"> {
   label?: string;
 }
 
-export function Input({ label, ...rest }: InputProps) {
+export function Input({ label, className, ...rest }: InputProps) {
   const id = useId();
   return (
-    <div className="flex flex-col gap-100">
+    <div className={`flex flex-col gap-100 ${className}`}>
       {label && (
         <label htmlFor={id} className="cursor-pointer">
           {label}
         </label>
       )}
       <input
-        className={cn("flex h-medium blocky-inset p-300")}
+        className={cn(
+          "flex h-medium w-full translate-y-[0.1rem] blocky-inset px-200",
+        )}
         id={id}
         {...rest}
       />
