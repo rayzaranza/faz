@@ -41,6 +41,7 @@ export type Database = {
       tasks: {
         Row: {
           created_at: string
+          deleted_at: string | null
           id: string
           is_done: boolean
           name: string
@@ -49,6 +50,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           id?: string
           is_done?: boolean
           name: string
@@ -57,6 +59,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           id?: string
           is_done?: boolean
           name?: string
@@ -75,7 +78,44 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      active_tasks: {
+        Row: {
+          created_at: string | null
+          deleted_at: string | null
+          id: string | null
+          is_done: boolean | null
+          name: string | null
+          project_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          deleted_at?: string | null
+          id?: string | null
+          is_done?: boolean | null
+          name?: string | null
+          project_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          deleted_at?: string | null
+          id?: string | null
+          is_done?: boolean | null
+          name?: string | null
+          project_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       [_ in never]: never
