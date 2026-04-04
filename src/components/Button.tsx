@@ -4,7 +4,7 @@ import { Icon } from "./Icon";
 import { type ReactElement } from "react";
 
 interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
-  variant?: "default" | "accent";
+  variant?: "default" | "accent" | "danger";
   icon?: LucideIcon | ReactElement;
   isLoading?: boolean;
   className?: string;
@@ -13,6 +13,7 @@ interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
 const variants = {
   default: "blocky",
   accent: "blocky-accent",
+  danger: "blocky text-content-danger",
 };
 
 export function Button({
@@ -28,10 +29,13 @@ export function Button({
       type="button"
       className={cn(
         "flex items-center justify-center gap-100",
-        "h-medium px-200 text-100",
+        "text-100 h-medium px-200",
         icon && "pl-100",
+        !children && "w-medium p-200",
         variants[variant],
         className,
+        isLoading && "pointer-events-none blocky-inset",
+        "disabled:pointer-events-none disabled:bg-container-inset disabled:text-content-disabled disabled:shadow-none",
       )}
       {...rest}
     >
