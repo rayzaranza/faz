@@ -29,7 +29,7 @@ export function Button({
       type="button"
       className={cn(
         "flex items-center justify-center gap-100",
-        "text-100 h-medium px-200",
+        "h-medium px-200 text-100",
         icon && "pl-100",
         !children && "w-medium p-200",
         variants[variant],
