@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/Button";
 import { Plus } from "lucide-react";
@@ -6,10 +6,11 @@ import { Wrapper } from "@/components/Wrapper";
 import { Popover } from "react-tiny-popover";
 import { useState } from "react";
 import { Input } from "@/components/Input";
-import EmptyStateIcon from "@/assets/empty_state.svg?react";
+import EmptyStateIcon from "@/assets/projects_empty_state.svg?react";
 import { PopoverContainer } from "@/components/PopoverContainer";
 import { createProject, getProjects } from "@/services/projects";
 import { Card } from "@/components/Card";
+import { useDeleteProject } from "@/hooks/useDeleteProject";
 
 export const Route = createFileRoute("/_authenticated/projetos/")({
   component: ProjectsPage,
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/_authenticated/projetos/")({
 
 function ProjectsPage() {
   const { projects } = Route.useLoaderData();
+  const { isDeleting, handleDelete } = useDeleteProject();
 
   if (projects?.length === 0) {
     return (
@@ -34,7 +36,7 @@ function ProjectsPage() {
                 Use projetos para agrupar tarefas relacionadas e manter o foco.
               </Text>
             </div>
-            <CreateProjectPopover />
+            <CreateProjectButton />
           </section>
         </main>
       </Wrapper>
@@ -42,24 +44,30 @@ function ProjectsPage() {
   }
 
   return (
-    <Wrapper className="flex flex-col gap-400">
+    <Wrapper className="flex flex-col gap-400 pb-[900px]">
       <header className="flex flex-wrap items-center justify-between gap-100">
         <Text variant="h1">projetos</Text>
-        <CreateProjectPopover />
+        <CreateProjectButton />
       </header>
 
-      <div className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-200 sm:grid-cols-2 lg:grid-cols-3">
         {projects?.map(({ id, name }) => (
-          <Link key={id} to="/projetos/$id" params={{ id }}>
-            <Card title={name} />
-          </Link>
+          <li key={id}>
+            <Card
+              to="/projetos/$id"
+              params={{ id }}
+              title={name}
+              onDelete={() => handleDelete(id)}
+              isDeleting={isDeleting(id)}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </Wrapper>
   );
 }
 
-function CreateProjectPopover() {
+function CreateProjectButton() {
   const navigate = useNavigate();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [name, setName] = useState<string>();
