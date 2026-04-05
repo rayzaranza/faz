@@ -34,7 +34,7 @@ export function CreateTaskForm({ projectId, onCancel }: CreateTaskFormProps) {
       <form
         action={handleFormAction}
         onKeyDown={({ key }) => key === "Escape" && onCancel()}
-        className="flex min-h-600 flex-wrap items-center gap-200 rounded-medium bg-container p-200 shadow-blocky md:flex-nowrap"
+        className="flex min-h-600 flex-wrap items-center gap-200 rounded-medium bg-container p-200 shadow-blocky-floating md:flex-nowrap"
       >
         <Input ref={inputRef} name="name" className="w-full" />
 
